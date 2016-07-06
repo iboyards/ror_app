@@ -1,0 +1,13 @@
+<%= form_for(@car) do |f| %>
+
+<%= render 'common/errors', resource: @car %>
+ 
+  <div class="field">
+    <%= f.label :name, 'Маршрут' %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "#{ @car.new_record? ? 'Создать' : 'Изменить'}" %>
+  </div>
+<% end %>
