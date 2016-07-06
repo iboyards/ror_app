@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20160706112053) do
     t.string   "car_type"
     t.integer  "up_places"
     t.integer  "low_places"
+    t.integer  "train_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
