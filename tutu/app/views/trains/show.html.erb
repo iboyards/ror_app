@@ -13,5 +13,27 @@
     Маршрут не назначен     
 <% end %>
 </p>
+
+<p>
+  <strong>В поезде:</strong>
+  <ul>
+    Плацкартные вагоны:
+    <%= @train.all_econom_car %>
+     <li> Общее количество верхних полок:
+    <%= @train.up_places_econom_car %></li>
+    <li> Общее количество нижних полок::
+    <%= @train.low_places_econom_car %></li>
+    </ul>
+    <ul>
+    Купейные вагоны:
+    <%= @train.all_coupe_car %>
+    <li> Общее количество верхних полок:
+    <%= @train.up_places_coupe_car %></li>
+    <li> Общее количество нижних полок::
+    <%= @train.low_places_coupe_car %></li>
+    </ul> 
+   
+  
+</p>
 <%= link_to 'Изменить', edit_train_path(@train) %> |
 <%= link_to 'Назад', trains_path %>
