@@ -2,6 +2,8 @@
 
 <h1>Список вагонов</h1>
 
+
+
 <table>
   <thead>
     <tr>
@@ -11,7 +13,14 @@
   </thead>
 
   <tbody>
-    <%= render @cars %>
+  <% @cars.each do |car| %>
+    <tr>
+    <td> <%= car.type %> <td>
+    <td> <%= car.number %> <td>
+    <td><%= link_to 'Показать', car.becomes(Car) %></td>
+    <td><%= link_to 'Редактировать', edit_car_path(car) %></td>
+    <td><%= link_to 'Удалить', car.becomes(Car), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+  <% end %>
   </tbody>
 </table>
 

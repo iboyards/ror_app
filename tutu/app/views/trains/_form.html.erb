@@ -5,6 +5,12 @@
     <%= f.label :number, 'Номер поезда' %><br>
     <%= f.text_field :number %>
   </div>
+  
+   <div class="field">
+    <%= f.label "Нумерация с головы" %><br>
+    <%= f.check_box :sort_from_head %>
+  </div>
+
   <div class="actions">    
     <%= f.submit "Изменить"%>
   </div>

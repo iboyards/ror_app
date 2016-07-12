@@ -10,7 +10,7 @@ class Train < ActiveRecord::Base
   def all_econom_car
     all_car = 0
     cars.each do |car|
-    all_car += 1 if car.car_type == 'econom'
+    all_car += 1 if car.type == 'EconomyCar'
     end
     all_car
   end
@@ -18,7 +18,7 @@ class Train < ActiveRecord::Base
   def up_places_econom_car
     all_places = 0
     cars.each do |car|
-    all_places += car.up_places if car.car_type == 'econom'
+    all_places += car.top_places if car.type == 'EconomyCar'
     end
     all_places
   end
@@ -26,7 +26,7 @@ class Train < ActiveRecord::Base
   def low_places_econom_car
     all_places = 0
     cars.each do |car|
-    all_places += car.low_places if car.car_type == 'econom'
+    all_places += car.bottom_places if car.type == 'EconomyCar'
     end
     all_places
   end
@@ -34,7 +34,7 @@ class Train < ActiveRecord::Base
   def all_coupe_car
     all_car = 0
     cars.each do |car|
-    all_car += 1 if car.car_type == 'coupe'
+    all_car += 1 if car.type == 'CoupeCar'
     end
     all_car
   end
@@ -42,7 +42,7 @@ class Train < ActiveRecord::Base
   def up_places_coupe_car
     all_places = 0
     cars.each do |car|
-    all_places += car.up_places if car.car_type == 'coupe'
+    all_places += car.top_places if car.type == 'CoupeCar'
     end
     all_places
   end
@@ -50,10 +50,12 @@ class Train < ActiveRecord::Base
   def low_places_coupe_car
     all_places = 0
     cars.each do |car|
-    all_places += car.low_places if car.car_type == 'coupe'
+    all_places += car.bottom_places if car.type == 'CoupeCar'
     end
     all_places
   end
+
+  
 
 
 

@@ -8,13 +8,29 @@
   <% if @route.trains.empty? %>
       <p> Поездов на маршруте нет </p>
   <% else %>
-      <% @route.trains.each do |train| %>
-      <p> Поезда на мрашруте: </p>
       <ul>
+      <p> Поезда на мрашруте: </p>   
+      <% @route.trains.each do |train| %>        
         <li><%= train.number %></li>
       <% end %>
       </ul>
   <% end %>
+
+<p>
+<strong>Список станций</strong>
+</p>
+
+<p>
+  <% if @route.railway_stations.empty? %>
+    Cтанций в маршруте нет <br>
+  <% else %>
+    <ul>    
+      <% @route.railway_stations.each do |station| %>
+        <li><%= "#{station.title}" %> </li>        
+      <% end %>
+    </ul>
+  <% end %>
+</p>
 
 <%= link_to 'Редактировать', edit_route_path(@route) %> |
 <%= link_to 'Назад', routes_path %>

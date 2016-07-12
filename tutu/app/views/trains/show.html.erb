@@ -13,6 +13,22 @@
     Маршрут не назначен     
 <% end %>
 </p>
+<% if @train.sort_from_head %>
+  <p> <b> Нумерация с головы </b> </p>
+<% else %>
+  <p> <b> Нумерация с хвоста </b> </p>
+<% end %>
+
+<%if @train.cars.empty? %>
+  <p> Нет вагонов </p>
+<% else %>
+  <p>Вагоны </p>
+  <% @train.cars.ordered(@train.sort_from_head).each  do |car| %>
+    <ul>
+      <li> <%= link_to "#{car.number}", car.becomes(Car) %> </li>
+    </ul>
+  <% end %>
+   <% end %>
 
 <p>
   <strong>В поезде:</strong>
