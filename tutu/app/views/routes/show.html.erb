@@ -1,35 +1,42 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Маршрут</strong>
+  <strong>Маршрут</strong><br>
   <%= @route.name %>
 </p>
 
+<p>
   <% if @route.trains.empty? %>
       <p> Поездов на маршруте нет </p>
-  <% else %>
-      <ul>
-      <p> Поезда на мрашруте: </p>   
+  <% else %>        
+      <strong> Поезда на мрашруте: </strong> 
+      <ul>  
       <% @route.trains.each do |train| %>        
         <li><%= train.number %></li>
       <% end %>
       </ul>
-  <% end %>
-
-<p>
-<strong>Список станций</strong>
-</p>
+  <% end %>  
+</p> 
 
 <p>
   <% if @route.railway_stations.empty? %>
-    Cтанций в маршруте нет <br>
+      <%= 'Cтанций в маршруте нет' %>
   <% else %>
-    <ul>    
-      <% @route.railway_stations.each do |station| %>
-        <li><%= "#{station.title}" %> </li>        
-      <% end %>
-    </ul>
-  <% end %>
+    <strong>Список станций:</strong>
+      <ul>
+        <% @route.railway_stations.ordered.each do |station| %>
+          <%= form_tag set_number_railway_station_path(station),  method: :patch do %>
+            <%= submit_tag('Save') %>
+            <%= hidden_field_tag(:route_id, @route.id) %>            
+            <%= number_field_tag(:number, station.current_number(@route),
+                                  id: "number_#{ station.title.parameterize.underscore }",
+                                  min: 1,
+                                  max: @route.railway_stations.size, step: 1) %>            
+            <%= label_tag("number_#{ station.title.underscore }",station.title) %>            
+          <% end %>          
+        <% end %>
+      </ul>
+<% end %>
 </p>
 
 <%= link_to 'Редактировать', edit_route_path(@route) %> |

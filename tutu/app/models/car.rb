@@ -6,9 +6,12 @@ class Car < ActiveRecord::Base
   validates :number,   presence: true
   validates :number, uniqueness: { scope: :train_id }
   scope :coupe, -> { where(type: "CoupeCar") }
+  scope :economy, -> { where(type: "EconomyCar") }
+  scope :comfort, -> { where(type: "ComfortCar") }
+  scope :seat, -> { where(type: "SeatCar") }
   scope :ordered, -> (from_head) { order(from_head ? 'number' : 'number DESC')}
 
-before_validation :set_number
+  before_validation :set_number
   
   private
   

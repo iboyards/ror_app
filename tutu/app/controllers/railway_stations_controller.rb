@@ -1,5 +1,5 @@
 class RailwayStationsController < ApplicationController
-  before_action :set_railway_station, only: [:show, :edit, :update, :destroy]
+  before_action :set_railway_station, only: [:show, :edit, :update, :destroy, :set_number]
 
   # GET /railway_stations
   # GET /railway_stations.json
@@ -49,6 +49,13 @@ class RailwayStationsController < ApplicationController
         format.json { render json: @railway_station.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def set_number
+    @route = Route.find(params[:route_id])
+    number = params[:number]
+    @railway_station.update_number(@route, number)
+    redirect_to @route
   end
 
   # DELETE /railway_stations/1

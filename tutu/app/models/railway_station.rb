@@ -8,15 +8,15 @@ class RailwayStation < ActiveRecord::Base
 
   validates :title, presence: true
 
-  scope :ordered, -> { joins(:railway_stations_routes).order('railway_stations_routes.position').uniq }
+  scope :ordered, -> { joins(:railway_stations_routes).order('railway_stations_routes.number').uniq }
 
-  def update_number(route, position)
-    route_railway_station = RailwayStationsRoute.where(route: route, railway_station: self).first
-    route_railway_station.update(position: position)
+  def update_number(route, number)
+    railway_station_route = RailwayStationsRoute.where(route: route, railway_station: self).first
+    railway_station_route.update(number: number)
   end
 
   def current_number(route)
-    route_railway_station = RailwayStationsRoute.where(route: route, railway_station: self).first
-    route_railway_station.position
+    railway_station_route = RailwayStationsRoute.where(route: route, railway_station: self).first
+    railway_station_route.number
   end
 end
