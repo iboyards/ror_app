@@ -23,20 +23,34 @@
       <%= 'Cтанций в маршруте нет' %>
   <% else %>
     <strong>Список станций:</strong>
-      <ul>
+    <table>
+      <thead>
+        <tr>
+          <td width = "100px"> Название </td>
+          <td> Позиция </td>
+        </tr>
+      </thead>
+      <tbody>
+      
         <% @route.railway_stations.ordered.each do |station| %>
+        <tr>
+        <td> <%= station.title %> </td>
           <%= form_tag set_number_railway_station_path(station),  method: :patch do %>
-            <%= submit_tag('Save') %>
+          <td>            
             <%= hidden_field_tag(:route_id, @route.id) %>            
             <%= number_field_tag(:number, station.current_number(@route),
                                   id: "number_#{ station.title.parameterize.underscore }",
                                   min: 1,
-                                  max: @route.railway_stations.size, step: 1) %>            
-            <%= label_tag("number_#{ station.title.underscore }",station.title) %>            
+                                  max: @route.railway_stations.size, step: 1) %>
+            <%= submit_tag('Изменить') %>                    
+            </td>
+            </tr>   
           <% end %>          
         <% end %>
-      </ul>
+      
 <% end %>
+</tbody>
+</table>
 </p>
 
 <%= link_to 'Редактировать', edit_route_path(@route) %> |
