@@ -52,9 +52,8 @@ class RailwayStationsController < ApplicationController
   end
 
   def set_number
-    @route = Route.find(params[:route_id])
-    number = params[:number]
-    @railway_station.update_number(@route, number)
+    @route = Route.find(params[:route_id])    
+    @railway_station.update_number(@route, params[:number])
     redirect_to @route
   end
 

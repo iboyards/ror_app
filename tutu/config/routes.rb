@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :trains
-  resources :railway_stations
+  resources :railway_stations do
+    patch :update_number, on: :member
+  end 
   resources :routes
   resources :tickets
   resources :cars

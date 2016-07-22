@@ -35,22 +35,21 @@
         <% @route.railway_stations.ordered.each do |station| %>
         <tr>
         <td> <%= station.title %> </td>
-          <%= form_tag set_number_railway_station_path(station),  method: :patch do %>
-          <td>            
+        <td>  
+          <%= form_tag set_number_railway_station_path(station),  method: :patch do %>                   
             <%= hidden_field_tag(:route_id, @route.id) %>            
             <%= number_field_tag(:number, station.current_number(@route),
                                   id: "number_#{ station.title.parameterize.underscore }",
                                   min: 1,
                                   max: @route.railway_stations.size, step: 1) %>
-            <%= submit_tag('Изменить') %>                    
-            </td>
-            </tr>   
-          <% end %>          
-        <% end %>
-      
-<% end %>
-</tbody>
-</table>
+            <%= submit_tag('Изменить') %>          
+          <% end %>
+        </td>
+        </tr>            
+        <% end %>    
+      </tbody>    
+    </table>
+  <% end %>
 </p>
 
 <%= link_to 'Редактировать', edit_route_path(@route) %> |
