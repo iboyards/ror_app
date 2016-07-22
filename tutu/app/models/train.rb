@@ -6,57 +6,5 @@ class Train < ActiveRecord::Base
   belongs_to :current_station, class_name: 'RailwayStation', foreign_key: :current_station_id
   has_many :cars
 
-  
-  def all_econom_car
-    all_car = 0
-    cars.each do |car|
-    all_car += 1 if car.car_type == 'econom'
-    end
-    all_car
-  end
-
-  def up_places_econom_car
-    all_places = 0
-    cars.each do |car|
-    all_places += car.up_places if car.car_type == 'econom'
-    end
-    all_places
-  end
-
-  def low_places_econom_car
-    all_places = 0
-    cars.each do |car|
-    all_places += car.low_places if car.car_type == 'econom'
-    end
-    all_places
-  end
-
-  def all_coupe_car
-    all_car = 0
-    cars.each do |car|
-    all_car += 1 if car.car_type == 'coupe'
-    end
-    all_car
-  end
-
-  def up_places_coupe_car
-    all_places = 0
-    cars.each do |car|
-    all_places += car.up_places if car.car_type == 'coupe'
-    end
-    all_places
-  end
-
-  def low_places_coupe_car
-    all_places = 0
-    cars.each do |car|
-    all_places += car.low_places if car.car_type == 'coupe'
-    end
-    all_places
-  end
-
-
-
-
   validates :number, presence: true
 end

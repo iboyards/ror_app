@@ -2,11 +2,9 @@
 
 <p>
   <strong>Вагон</strong>
-  <%= @car.car_type %>
-  <%= @car.up_places %>
+  <%= render 'car' %>  
 </p>
-
-  
+ 
 
 <%= link_to 'Редактировать', edit_car_path(@car) %> |
 <%= link_to 'Назад', cars_path %>

@@ -45,7 +45,7 @@ class RoutesController < ApplicationController
   end
 
   def route_params
-    params.require(:route).permit(:name, :train_ids)    
+    params.require(:route).permit( :name, :train_ids, railway_station_ids: [] )     
   end
 
 end

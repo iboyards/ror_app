@@ -1,10 +1,14 @@
 class CreateCars < ActiveRecord::Migration
   def change
     create_table :cars do |t|
-      t.string :car_type
-      t.integer :up_places
-      t.integer :low_places
-      t.integer :train_id 
+      t.integer :number
+      t.integer :top_places
+      t.integer :bottom_places
+      t.integer :side_top_places
+      t.integer :side_bottom_places
+      t.integer :seat_places
+      t.belongs_to :train
+      t.string :type
       
 
       t.timestamps null: false

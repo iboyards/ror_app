@@ -16,7 +16,7 @@ class CarsController < ApplicationController
     @car = Car.new(car_params)
 
     if @car.save
-      redirect_to @car
+      redirect_to @car.becomes(Car)
     else
       render :new
     end
@@ -27,7 +27,7 @@ class CarsController < ApplicationController
 
   def update    
     if @car.update(car_params)
-      redirect_to @car
+      redirect_to @car.becomes(Car)
     else
       render :new
     end
@@ -45,7 +45,8 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:car_type, :up_places, :low_places, :train_id)    
+    params.require(:car).permit(:number, :top_places, :bottom_places, :side_top_places, 
+      :side_bottom_places, :seat_places, :train_id, :type)    
   end
 
 end

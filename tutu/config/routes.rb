@@ -4,9 +4,13 @@ Rails.application.routes.draw do
   resources :routes
   resources :tickets
   resources :cars
+  
   get 'welcome/index'
 
   root 'welcome#index'
+  resources :railway_stations do
+    patch :set_number, on: :member
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
