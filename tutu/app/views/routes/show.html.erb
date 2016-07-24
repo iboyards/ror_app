@@ -48,8 +48,8 @@
           <% end %>
         </td>
         <td>
-              <%= form_tag update_arrive_time_railway_station_path(station), method: :patch do %>
-                <%= time_field_tag :arrive_time, station.arrive(@route).try(:strftime, "%H:%M") %>
+              <%= form_tag update_arrival_time_railway_station_path(station), method: :patch do %>
+                <%= time_field_tag :arrival_time, station.arrival(@route).try(:strftime, "%H:%M") %>
                 <%= hidden_field_tag :route_id, @route.id %>
                 <%= submit_tag "Изменить" %>
               <% end %>

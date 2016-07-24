@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :railway_stations do
     patch :set_number, on: :member
-    patch :update_arrive_time, on: :member
+    patch :update_arrival_time, on: :member
     patch :update_departure_time, on: :member
   end 
 

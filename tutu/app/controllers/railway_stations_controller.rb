@@ -1,5 +1,6 @@
 class RailwayStationsController < ApplicationController
-  before_action :set_railway_station, only: [:show, :edit, :update, :destroy, :set_number]
+  before_action :set_railway_station, only: [:show, :edit, :update, :destroy, :set_number, 
+                :update_arrival_time, :update_departure_time]
 
   # GET /railway_stations
   # GET /railway_stations.json
@@ -57,15 +58,15 @@ class RailwayStationsController < ApplicationController
     redirect_to @route
   end
 
-  def update_arrive_time
+  def update_arrival_time
     @route = Route.find(params[:route_id])
-    @railway_station.update_arrive(@route, params[:arrive_time])
+    @railway_station.update_arrival_time(@route, params[:arrival_time])
     redirect_to @route
   end
 
   def update_departure_time
     @route = Route.find(params[:route_id])
-    @railway_station.update_departure(@route, params[:departure_time])
+    @railway_station.update_departure_time(@route, params[:departure_time])
     redirect_to @route
 end
 
