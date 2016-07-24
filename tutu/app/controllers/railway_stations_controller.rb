@@ -57,6 +57,18 @@ class RailwayStationsController < ApplicationController
     redirect_to @route
   end
 
+  def update_arrive_time
+    @route = Route.find(params[:route_id])
+    @railway_station.update_arrive(@route, params[:arrive_time])
+    redirect_to @route
+  end
+
+  def update_departure_time
+    @route = Route.find(params[:route_id])
+    @railway_station.update_departure(@route, params[:departure_time])
+    redirect_to @route
+end
+
   # DELETE /railway_stations/1
   # DELETE /railway_stations/1.json
   def destroy
@@ -75,6 +87,6 @@ class RailwayStationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def railway_station_params
-      params.require(:railway_station).permit(:title)
+      params.require(:railway_station).permit(:title, :number)
     end
 end

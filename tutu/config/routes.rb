@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :trains do
     resources :cars, shallow: true
   end
-  
+
   resources :railway_stations do
     patch :set_number, on: :member
     patch :update_arrive_time, on: :member
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :tickets
   resources :cars
   
+  resource :search, only: [:new, :show, :create]
   get 'welcome/index'
 
   root 'welcome#index'
