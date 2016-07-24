@@ -2,9 +2,13 @@ Rails.application.routes.draw do
   resources :trains do
     resources :cars, shallow: true
   end
+  
   resources :railway_stations do
     patch :set_number, on: :member
+    patch :update_arrive_time, on: :member
+    patch :update_departure_time, on: :member
   end 
+
   resources :routes
   resources :tickets
   resources :cars
