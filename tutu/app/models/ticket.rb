@@ -7,5 +7,6 @@ class Ticket < ActiveRecord::Base
   belongs_to :user
 
   validates :code, presence: true
+  validates :full_name_user, presence: true
 
 end

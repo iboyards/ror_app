@@ -11,9 +11,10 @@ Rails.application.routes.draw do
 
   resources :routes
   resources :tickets
+   resources :users
   resources :cars
   
-  resource :search, only: [:new, :show, :create]
+  resource :search, only: [:new, :show]
   get 'welcome/index'
 
   root 'welcome#index'

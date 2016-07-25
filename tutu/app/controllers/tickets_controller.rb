@@ -1,7 +1,8 @@
 class TicketsController < ApplicationController
 
  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
-  
+  before_action :set_stations, only: [:new]
+ 
   def index
     @tickets= Ticket.all
   end
@@ -45,7 +46,12 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
   end
 
+  def set_stations
+    @from = RailwayStation.find(params[:ticket][:first_station_id])
+    @to = RailwayStation.find(params[:ticket][:last_station_id])
+  end
+
   def ticket_params
-    params.require(:ticket).permit(:code)    
+    params.require(:ticket).permit(:code, :full_name_user, :passport, :train_id, :user_id, :first_station_id, :last_station_id)    
   end
 end
