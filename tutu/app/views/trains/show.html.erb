@@ -25,7 +25,7 @@
   <p>Вагоны </p>
   <% @train.cars.ordered(@train.sort_from_head).each  do |car| %>
     <ul>
-      <%= link_to "#{car.number}", car.becomes(Car) %> 
+      <%= link_to "Вагон №#{car.number}", car.becomes(Car) %> 
     </ul>
   <% end %>
 <% end %>
@@ -61,8 +61,9 @@
     <li> Общее количество сидячих мест:
     <%= @train.cars.seat.sum(:seat_places) %></li>   
     </ul> 
-   
-  
 </p>
+
+<p>
+<%= link_to "Добавить вагон", new_train_car_path(@train) %>
 <%= link_to 'Изменить', edit_train_path(@train) %> |
 <%= link_to 'Назад', trains_path %>

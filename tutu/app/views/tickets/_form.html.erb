@@ -1,0 +1,29 @@
+<%= form_for (@ticket) do |f| %>
+ 
+  <%= render 'common/errors', resource: @ticket %>
+  <p>    
+    <%= f.hidden_field :train_id, value: @ticket.train_id %>
+    <%= f.hidden_field :first_station_id, value: params[:ticket][:first_station_id] %>
+    <%= f.hidden_field :last_station_id, value: params[:ticket][:last_station_id]%>    
+  </p>
+
+  <p>
+    <%= f.label :code, 'Номер билета' %><br>
+    ы<%= f.text_field :code %>
+  </p>
+
+  <p>
+    <%= f.label :full_name_user, 'ФИО' %><br>
+    <%= f.text_field :full_name_user %>
+  </p>
+
+  <p>
+    <%= f.label :passport, 'Паспорт' %><br>
+    <%= f.text_field :passport %>
+  </p>
+  
+  <p>
+    <%= f.submit "Купить билет" %>
+  </p>
+ 
+<% end %>

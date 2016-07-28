@@ -23,20 +23,50 @@
       <%= 'Cтанций в маршруте нет' %>
   <% else %>
     <strong>Список станций:</strong>
-      <ul>
+    <table>
+      <thead>
+        <tr>
+          <td width = "100px"> Название </td>
+          <td width = "150px"> Позиция </td>
+          <td width = "200px"> Время прибытия </td>
+          <td width = "200px"> Время отправления </td>
+        </tr>
+      </thead>
+      <tbody>
+      
         <% @route.railway_stations.ordered.each do |station| %>
-          <%= form_tag set_number_railway_station_path(station),  method: :patch do %>
-            <%= submit_tag('Save') %>
+        <tr>
+        <td> <%= station.title %> </td>
+        <td>  
+          <%= form_tag set_number_railway_station_path(station),  method: :patch do %>                   
             <%= hidden_field_tag(:route_id, @route.id) %>            
             <%= number_field_tag(:number, station.current_number(@route),
                                   id: "number_#{ station.title.parameterize.underscore }",
                                   min: 1,
-                                  max: @route.railway_stations.size, step: 1) %>            
-            <%= label_tag("number_#{ station.title.underscore }",station.title) %>            
-          <% end %>          
-        <% end %>
-      </ul>
-<% end %>
+                                  max: @route.railway_stations.size, step: 1) %>
+            <%= submit_tag('Изменить') %>          
+          <% end %>
+        </td>
+        <td>
+              <%= form_tag update_arrival_time_railway_station_path(station), method: :patch do %>
+                <%= time_field_tag :arrival_time, station.arrival(@route).try(:strftime, "%H:%M") %>
+                <%= hidden_field_tag :route_id, @route.id %>
+                <%= submit_tag "Изменить" %>
+              <% end %>
+          </td>
+          <td>
+              <%= form_tag update_departure_time_railway_station_path(station), method: :patch do %>
+                <%= time_field_tag :departure_time, station.departure(@route).try(:strftime, "%H:%M") %>
+                <%= hidden_field_tag :route_id, @route.id %>
+                <%= submit_tag "Изменить" %>
+              <% end %>
+</td>
+        </tr> 
+
+        <% end %>    
+      </tbody>    
+    </table>
+  <% end %>
 </p>
 
 <%= link_to 'Редактировать', edit_route_path(@route) %> |

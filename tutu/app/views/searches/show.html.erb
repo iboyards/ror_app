@@ -1,0 +1,25 @@
+<%= form_tag new_search_path, method: :get do %>
+<%= label_tag "From" %>
+<%= select_tag :from, options_from_collection_for_select(RailwayStation.all, 'id', 'title') %>
+<%= label_tag "To" %>
+<%= select_tag :to, options_from_collection_for_select(RailwayStation.all, 'id', 'title') %>
+<%= submit_tag('Поиск') %>
+<% end %>
+
+
+<% if @trains.nil? %>
+    <p>No trains found!</p>
+<% else %>
+    <% @trains.each do |train| %>
+      <p>
+        <span><%= "Поезд № #{train.number}" %></span>
+        <span><%= "Время отправления: #{train.route.railway_stations.first.departure(train.route).try(:strftime, "%H:%M")}" %>
+        </span>
+        <span><%= "Время прибытия: #{train.route.railway_stations.last.arrival(train.route).try(:strftime, "%H:%M")}" %></span>
+        <%= link_to 'Купить билет', new_ticket_path(ticket: {
+            train_id: train.id,
+            first_station_id: params[:from],
+            last_station_id: params[:to]}) %>
+      </p>
+    <% end %>
+<% end %>

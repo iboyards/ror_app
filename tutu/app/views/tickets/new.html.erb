@@ -1,25 +1,6 @@
-<h1>Добавить новый билет</h1>
+<h1>Новый билет</h1>
 
-<%= form_for(@ticket) do |f| %>
-  <% if @ticket.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+<%= render 'form' %>
 
-      <ul>
-      <% @ticket.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :code %><br>
-    <%= f.text_field :code %>
-  </div>
-  <div class="actions">
-    <%= f.submit 'Создать'%>
-  </div>
-<% end %>
-
-<%= link_to 'Назад', tickets_path %>
+<%= link_to 'Назад', tickets_path %> /
+<%= link_to 'Главная', welcome_index_path %>
