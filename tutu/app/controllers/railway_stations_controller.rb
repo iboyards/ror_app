@@ -1,4 +1,5 @@
 class RailwayStationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_railway_station, only: [:show, :edit, :update, :destroy, :set_number, 
                 :update_arrival_time, :update_departure_time]
   before_action :set_route, only: [:set_number, :update_arrival_time, :update_departure_time]
