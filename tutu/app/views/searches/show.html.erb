@@ -13,7 +13,8 @@
     <% @trains.each do |train| %>
       <p>
         <span><%= "Поезд № #{train.number}" %></span>
-        <span><%= "Время отправления: #{train.route.railway_stations.first.departure(train.route).try(:strftime, "%H:%M")}" %></span>
+        <span><%= "Время отправления: #{train.route.railway_stations.first.departure(train.route).try(:strftime, "%H:%M")}" %>
+        </span>
         <span><%= "Время прибытия: #{train.route.railway_stations.last.arrival(train.route).try(:strftime, "%H:%M")}" %></span>
         <%= link_to 'Купить билет', new_ticket_path(ticket: {
             train_id: train.id,

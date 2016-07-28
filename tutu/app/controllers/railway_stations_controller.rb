@@ -1,6 +1,7 @@
 class RailwayStationsController < ApplicationController
   before_action :set_railway_station, only: [:show, :edit, :update, :destroy, :set_number, 
                 :update_arrival_time, :update_departure_time]
+  before_action :set_route, only: [:set_number, :update_arrival_time, :update_departure_time]
 
   # GET /railway_stations
   # GET /railway_stations.json
@@ -52,20 +53,17 @@ class RailwayStationsController < ApplicationController
     end
   end
 
-  def set_number
-    @route = Route.find(params[:route_id])    
+  def set_number     
     @railway_station.update_number(@route, params[:number])
     redirect_to @route
   end
 
-  def update_arrival_time
-    @route = Route.find(params[:route_id])
+  def update_arrival_time    
     @railway_station.update_arrival_time(@route, params[:arrival_time])
     redirect_to @route
   end
 
-  def update_departure_time
-    @route = Route.find(params[:route_id])
+  def update_departure_time    
     @railway_station.update_departure_time(@route, params[:departure_time])
     redirect_to @route
 end
@@ -84,6 +82,10 @@ end
     # Use callbacks to share common setup or constraints between actions.
     def set_railway_station
       @railway_station = RailwayStation.find(params[:id])
+    end
+
+    def set_route
+      @route = Route.find(params[:route_id])   
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
