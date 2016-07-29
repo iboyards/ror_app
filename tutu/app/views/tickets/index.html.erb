@@ -15,7 +15,7 @@
       <tr>
         <td><%= ticket.code %></td>
         <td><%= link_to 'Показать', ticket %></td>
-        <td><%= link_to 'Изменить', edit_ticket_path(ticket) %></td>
+        
         <td><%= link_to 'Удалить', ticket, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
       </tr>
     <% end %>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'Новый билет', new_ticket_path %>
+

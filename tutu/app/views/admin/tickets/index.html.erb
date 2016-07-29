@@ -1,0 +1,27 @@
+
+<h1>Список билетов</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Номер билета</th>
+      <th>Пользователь</th>
+      
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tickets.each do |ticket| %>
+      <tr>
+        <td><%= ticket.code %></td>
+        <td><%= ticket.user.email %></td>
+        <td><%= link_to 'Показать', [:admin, ticket] %></td>
+        <td><%= link_to 'Изменить', edit_admin_ticket_path(ticket) %></td>
+        <td><%= link_to 'Удалить', [:admin,ticket], method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

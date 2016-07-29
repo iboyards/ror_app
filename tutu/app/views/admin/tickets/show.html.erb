@@ -4,6 +4,7 @@
   <table>
     <thead>
       <tr>
+        <td>User</td>
         <td>Номер</td>
         <td>ФИО</td>
         <td>Паспорт</td>
@@ -14,6 +15,7 @@
 
     <tbody>
       <tr>
+        <td><%= @ticket.user.email %></td>
         <td><%= @ticket.code %></td>
         <td><%= @ticket.full_name_user %></td>
         <td><%= @ticket.passport %></td>
@@ -25,6 +27,6 @@
   </table>
 </p>
 
-
-<%= link_to 'Назад', tickets_path %> /
+<%= link_to 'Редактировать', edit_admin_ticket_path(@ticket) %> /
+<%= link_to 'Назад', admin_tickets_path %> /
 <%= link_to 'Главная', welcome_index_path %>

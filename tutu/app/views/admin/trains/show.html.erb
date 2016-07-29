@@ -1,0 +1,68 @@
+
+<p>
+  <strong>Поезд номер:</strong>
+  <%= @train.number %>
+</p>
+
+<p>
+<% if @train.route.present? %>
+    Назначен следующий маршрут:
+    <%= @train.route.name %>    
+<% else %>
+    Маршрут не назначен     
+<% end %>
+</p>
+<% if @train.sort_from_head %>
+  <p> <b> Нумерация с головы </b> </p>
+<% else %>
+  <p> <b> Нумерация с хвоста </b> </p>
+<% end %>
+
+<%if @train.cars.empty? %>
+  <p> Нет вагонов </p>
+<% else %>
+  <p>Вагоны </p>
+  <% @train.cars.ordered(@train.sort_from_head).each  do |car| %>
+    <ul>
+      <%= link_to "Вагон №#{car.number}", [:admin, car.becomes(Car) ]%> 
+    </ul>
+  <% end %>
+<% end %>
+
+<p>
+  <strong>В поезде:</strong>
+  <ul>
+    <ins> Плацкартных вагонов: 
+    <%= @train.cars.economy.count %></ins>
+     <li> Общее количество верхних полок:
+    <%= @train.cars.economy.sum(:top_places) %></li>
+    <li> Общее количество нижних полок::
+    <%= @train.cars.economy.sum(:bottom_places) %></li>
+    <li> Общее количество боковых верхних полок:
+    <%= @train.cars.economy.sum(:side_top_places) %></li>
+    <li> Общее количество боковых нижних полок::
+    <%= @train.cars.economy.sum(:side_bottom_places) %></li>
+    
+    <ins>Купейных вагонов:
+    <%= @train.cars.coupe.count %></ins>
+     <li> Общее количество верхних полок:
+    <%= @train.cars.coupe.sum(:top_places) %></li>
+    <li> Общее количество нижних полок::
+    <%= @train.cars.coupe.sum(:bottom_places) %></li>
+   
+    <ins>СВ-вагонов:
+     <%= @train.cars.comfort.count %></ins>    
+    <li> Общее количество нижних полок::
+    <%= @train.cars.comfort.sum(:bottom_places) %></li>
+       
+    <ins>Сидячих вагонов:
+    <%= @train.cars.seat.count %></ins>
+    <li> Общее количество сидячих мест:
+    <%= @train.cars.seat.sum(:seat_places) %></li>   
+    </ul> 
+</p>
+
+<p>
+<%= link_to "Добавить вагон", new_admin_train_car_path(@train) %>
+<%= link_to 'Изменить', edit_admin_train_path(@train) %> |
+<%= link_to 'Назад', admin_trains_path %>
