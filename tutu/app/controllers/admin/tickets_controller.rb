@@ -10,7 +10,7 @@ class Admin::TicketsController < Admin::BaseController
   end
 
   def new
-    @ticket = current_user.tickets.new
+    
   end
 
   def create    
