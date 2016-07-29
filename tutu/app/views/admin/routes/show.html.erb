@@ -1,0 +1,73 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Маршрут</strong><br>
+  <%= @route.name %>
+</p>
+
+<p>
+  <% if @route.trains.empty? %>
+      <p> Поездов на маршруте нет </p>
+  <% else %>        
+      <strong> Поезда на мрашруте: </strong> 
+      <ul>  
+      <% @route.trains.each do |train| %>        
+        <li><%= train.number %></li>
+      <% end %>
+      </ul>
+  <% end %>  
+</p> 
+
+<p>
+  <% if @route.railway_stations.empty? %>
+      <%= 'Cтанций в маршруте нет' %>
+  <% else %>
+    <strong>Список станций:</strong>
+    <table>
+      <thead>
+        <tr>
+          <td width = "100px"> Название </td>
+          <td width = "150px"> Позиция </td>
+          <td width = "200px"> Время прибытия </td>
+          <td width = "200px"> Время отправления </td>
+        </tr>
+      </thead>
+      <tbody>
+      
+        <% @route.railway_stations.ordered.each do |station| %>
+        <tr>
+        <td> <%= station.title %> </td>
+        <td>  
+          <%= form_tag set_number_admin_railway_station_path(station),  method: :patch do %>                   
+            <%= hidden_field_tag(:route_id, @route.id) %>            
+            <%= number_field_tag(:number, station.current_number(@route),
+                                  id: "number_#{ station.title.parameterize.underscore }",
+                                  min: 1,
+                                  max: @route.railway_stations.size, step: 1) %>
+            <%= submit_tag('Изменить') %>          
+          <% end %>
+        </td>
+        <td>
+              <%= form_tag update_arrival_time_admin_railway_station_path(station), method: :patch do %>
+                <%= time_field_tag :arrival_time, station.arrival(@route).try(:strftime, "%H:%M") %>
+                <%= hidden_field_tag :route_id, @route.id %>
+                <%= submit_tag "Изменить" %>
+              <% end %>
+          </td>
+          <td>
+              <%= form_tag update_departure_time_admin_railway_station_path(station), method: :patch do %>
+                <%= time_field_tag :departure_time, station.departure(@route).try(:strftime, "%H:%M") %>
+                <%= hidden_field_tag :route_id, @route.id %>
+                <%= submit_tag "Изменить" %>
+              <% end %>
+</td>
+        </tr> 
+
+        <% end %>    
+      </tbody>    
+    </table>
+  <% end %>
+</p>
+
+<%= link_to 'Редактировать', edit_admin_route_path(@route) %> |
+<%= link_to 'Назад', admin_routes_path %>
