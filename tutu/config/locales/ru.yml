@@ -19,6 +19,15 @@ ru:
     arrival_station: 'Станция отправления'
     departure_station: 'Станция прибытия'
     passport: 'Паспорт'
+    stations: 'Станции'
+    cars: 'Вагоны'
+    routes: 'Маршруты'
+    tickets: 'Билеты'
+    trains: 'Поезда'
+    search: 'Поиск билета'
+    exit: 'Выход'
+    login: 'Войти'
+    register: 'Регистрация'
   admin:
     railway_stations:
       new:
