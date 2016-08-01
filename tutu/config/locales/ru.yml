@@ -1,0 +1,63 @@
+ru:
+  common:
+    back: 'Назад'
+    main: 'Главная'
+    show: 'Показать'
+    edit: 'Изменить'
+    destroy: 'Удалить'
+    errors: 'При заполнении формы возникли ошибки'
+    from: 'Откуда'
+    to: 'Куда'
+    search: 'Поиск'
+    new: 'Создать'
+    confirm: 'Вы уверены?'
+    name_of: 'Название'
+    buy: 'Купить'
+    user: 'Пользователь'
+    full_name: 'ФИО'
+    number: 'Номер'
+    arrival_station: 'Станция отправления'
+    departure_station: 'Станция прибытия'
+    passport: 'Паспорт'
+    stations: 'Станции'
+    cars: 'Вагоны'
+    routes: 'Маршруты'
+    tickets: 'Билеты'
+    trains: 'Поезда'
+    search: 'Поиск билета'
+    exit: 'Выход'
+    login: 'Войти'
+    register: 'Регистрация'
+  admin:
+    railway_stations:
+      new:
+        title: 'Новая станция'
+      edit: 
+        title: 'Отредактировать станцию'
+      index: 
+        title: 'Список всех станций'
+        new: 'Добавить новую станцию'
+      form:
+        submit: '%{action} станцию'
+    trains:
+      form:
+        submit: '%{action} поезд'
+        num_of_head: 'Нумерация с головы'
+        route: 'Назначить маршрут:'
+      new:
+        title: 'Новый поезд'
+      edit:
+        title: 'Редактирование поезда'
+      index: 
+        title: 'Список всех поездов'
+        new: 'Добавить новый поезд'
+    tickets:
+      form:
+       submit: 'Купить'
+      edit:
+        title: 'Редактирование билета'
+      index: 
+        title: 'Список всех билетов'
+      show:
+        title: 'Просмотр билета'
+        

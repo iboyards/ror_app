@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-  
+  before_action :set_stations, only: [:new, :show]
   def show
     
   end
@@ -12,4 +12,10 @@ class SearchesController < ApplicationController
   def create
     
   end
+
+  private
+
+  def set_stations
+    @stations = RailwayStation.all
+end
 end

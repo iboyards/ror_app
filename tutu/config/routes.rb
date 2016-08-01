@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
 
-  root 'welcome#index'
+  root 'searches#show'
   
 
   # The priority is based upon order of creation: first created -> highest priority.

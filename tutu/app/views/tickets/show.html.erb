@@ -1,14 +1,15 @@
 <h2> Мой Билет </h2>
 
 <p>
-  <table>
+  <table class="table">
     <thead>
       <tr>
-        <td>Номер</td>
-        <td>ФИО</td>
-        <td>Паспорт</td>
-        <td>Станция отправления</td>
-        <td>Станция прибытия</td>
+        
+        <td><%=t('common.number')%></td>
+        <td><%=t('common.full_name')%></td>
+        <td><%=t('common.passport') %></td>
+        <td><%=t('common.arrival_station')%></td>
+        <td><%=t('common.departure_station') %></td>
       </tr>
     </thead>
 
@@ -26,5 +27,5 @@
 </p>
 
 
-<%= link_to 'Назад', tickets_path %> /
-<%= link_to 'Главная', welcome_index_path %>
+<%= link_to t('common.back'), tickets_path %> /
+<%= link_to t('commmon.main'), welcome_index_path %>

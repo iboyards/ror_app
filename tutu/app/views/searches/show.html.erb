@@ -1,25 +1,37 @@
+<div class="row">
+<h1 class="text-center">Поиск билетов</h1>
+<div class='col-md-6'>
 <%= form_tag new_search_path, method: :get do %>
-<%= label_tag "From" %>
-<%= select_tag :from, options_from_collection_for_select(RailwayStation.all, 'id', 'title') %>
-<%= label_tag "To" %>
-<%= select_tag :to, options_from_collection_for_select(RailwayStation.all, 'id', 'title') %>
-<%= submit_tag('Поиск') %>
+<%= label_tag t('common.from') %>
+<%= select_tag :from, options_from_collection_for_select(@stations, 'id', 'title' ), class: "form-control" %>
+</div>
+<div class='col-md-6'>
+<%= label_tag t('common.to') %>
+<%= select_tag :to, options_from_collection_for_select(@stations, 'id', 'title'), class: "form-control" %>
+</div>
+<div class='col-md-1'>
+
+<%= submit_tag t('common.search'),  class: 'btn btn-primary' %>
 <% end %>
-
-
+</div>
+</div>
+<div class="row">
+<div class='col-md-6'>
 <% if @trains.nil? %>
-    <p>No trains found!</p>
+    <p>Поездов нет</p>
 <% else %>
     <% @trains.each do |train| %>
-      <p>
-        <span><%= "Поезд № #{train.number}" %></span>
-        <span><%= "Время отправления: #{train.route.railway_stations.first.departure(train.route).try(:strftime, "%H:%M")}" %>
-        </span>
-        <span><%= "Время прибытия: #{train.route.railway_stations.last.arrival(train.route).try(:strftime, "%H:%M")}" %></span>
-        <%= link_to 'Купить билет', new_ticket_path(ticket: {
+      <tr>
+        <td><%= "Поезд № #{train.number}" %></td>
+        <td><%= "Время отправления: #{train.route.railway_stations.first.departure(train.route).try(:strftime, "%H:%M")}" %>
+        </td>
+        <td><%= "Время прибытия: #{train.route.railway_stations.last.arrival(train.route).try(:strftime, "%H:%M")}" %></td>
+        <%= link_to t('common.buy'), new_ticket_path(ticket: {
             train_id: train.id,
             first_station_id: params[:from],
-            last_station_id: params[:to]}) %>
-      </p>
+            last_station_id: params[:to]}), class: 'btn btn-primary'%>
+      </tr>
     <% end %>
+    </div>
+</div>
 <% end %>
