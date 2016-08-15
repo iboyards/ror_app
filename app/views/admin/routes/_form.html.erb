@@ -1,6 +1,7 @@
-<%= form_for([:admin, @route]) do |f| %>
+<% hidden = false unless local_assigns[:hidden] %>
 
-<%= render 'common/errors', resource: @route %>
+<%= form_for [:admin, route], html: { style: "display: #{hidden ? 'none' : 'block'}" } do |f| %>
+
  
   <div class="field">
     <%= f.label :name, 'Маршрут' %><br>
@@ -19,6 +20,6 @@
 
 
   <div class="actions">
-    <%= f.submit "#{ @route.new_record? ? 'Создать' : 'Изменить'}" %>
+    <%= f.submit "#{ route.new_record? ? 'Создать' : 'Изменить'}" %>
   </div>
 <% end %>
